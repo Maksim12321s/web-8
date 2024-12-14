@@ -14,8 +14,8 @@ import (
 const (
 	host     = "localhost"
 	port     = 5432
-	user     = "postgres"
-	password = "postgres"
+	user     = "maksim"
+	password = "123"
 	dbname   = "sandbox"
 )
 
@@ -29,6 +29,7 @@ type DatabaseProvider struct {
 
 // Обработчики HTTP-запросов
 func (h *Handlers) GetHello(w http.ResponseWriter, r *http.Request) {
+
 	msg, err := h.dbProvider.SelectHello()
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
@@ -48,7 +49,7 @@ func (h *Handlers) PostHello(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		if err != nil {
 			w.WriteHeader(http.StatusBadRequest)
-			w.Write([]byte(err.Error()))
+
 		}
 	}
 
